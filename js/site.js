@@ -1,5 +1,9 @@
 //get our user input
 function getValue(){
+
+    //make sure alert is invisible
+    document.getElementById("alert").classList.add("invisible");
+
     //get user string for the page
     let userString = document.getElementById("userString").value;
 
@@ -22,18 +26,32 @@ function checkForPalindrome(userString){
     userString = userString.replace(regex,"");
 
     //reverse the string
-    let revString [];
+    let revString = [];
+    let returnObj = {};
     //i need a decrementing for loop a loop that starts from the end.
 
-    for (let index = userSting.length - 1; index >=0; index--) {
-        revString += userSting[index];
+    for (let index = userString.length - 1; index >=0; index--) {
+        revString += userString[index];
     }
 
+    if (revString == userString) {
+        returnObj.msg = "Good job..."
+    }
+    else{
+        returnObj.msg = "Try again you got this..."
+    }
+    returnObj.reversed = revString;
+
+    return returnObj;
     
 
 }
 
 //display a message to the string
-function displayMessage(){
+function displayMessage(returnObj){
+    
+    document.getElementById("alertHeader").innerHTML = returnObj.msg;
+    document.getElementById("msg").innerHTML = `Your phrase reversed is: ${returnObj.reversed}`;
+    document.getElementById("alert").classList.remove("invisible");
 
 }
