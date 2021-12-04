@@ -52,18 +52,81 @@
         <h2 class="border-1 border-bottom border-dark">The Code for Palindrome.</h2>
         <div class="row row-cols-1 row-cols-lg-2">
             <div class="col-lg-8">
-                <pre class="line-numbers"><code class="language-javascript">
-                    // Call Hello World
-                    function HelloWorld() {
-                        alert("hello World");
-                    }
-                </code>
-                </pre>
+<pre class="line-numbers"><code class="language-javascript">
+    //get our user input
+    function getValue(){
+    
+        //make sure alert is invisible
+        document.getElementById("alert").classList.add("invisible");
+    
+        //get user string for the page
+        let userString = document.getElementById("userString").value;
+    
+        //check for a palindrome
+        let returnObj = checkForPalindrome(userString);
+    
+        //display out message to the screen
+        displayMessage(returnObj);
+    
+    }
+    
+    //check if string is a palindrome.
+    function checkForPalindrome(userString){
+    
+        //remove lowercase letters from the userString.
+        userString = userString.toLowerCase();
+    
+        //remove space and special characters from the userString.
+        let regex = /[^a-z0-9]/gi;
+        userString = userString.replace(regex,"");
+    
+        //reverse the string
+        let revString = [];
+        let returnObj = {};
+        //i need a decrementing for loop a loop that starts from the end.
+    
+        for (let index = userString.length - 1; index >=0; index--) {
+            revString += userString[index];
+        }
+    
+        if (revString == userString) {
+            returnObj.msg = "Good job..."
+        }
+        else{
+            returnObj.msg = "Try again you got this..."
+        }
+        returnObj.reversed = revString;
+    
+        return returnObj;
+        
+    
+    }
+    
+    //display a message to the string
+    function displayMessage(returnObj){
+        
+        document.getElementById("alertHeader").innerHTML = returnObj.msg;
+        document.getElementById("msg").innerHTML = `Your phrase reversed is: ${returnObj.reversed}`;
+        document.getElementById("alert").classList.remove("invisible");
+    
+    }
+</code>
+</pre>
             </div>
             <div class="col-lg-4">
-                <P>The code is structed in one function. </P>
-                <h5>Hello world</h5>
-                <p>Hello World is a function that displays an alert with a message of "Hello World",</p>
+                <P>The code is structed in three functions. </P>
+                <h5>#1 getValue</h5>
+                <p>The getvalue function gets the value of the string from the page using 
+                    userString 
+                </p>
+                <h5>#2 checkForPalindrome</h5>
+                <p>In this function we first check to see if it has any uppercase letters 
+                    and make it lowercase then set up what we want in the string to have in it 
+                    then using a decrementing for loop we reverse the string and add messages 
+                    to pop up depending if it is the right or wrong answer.     
+                </p>
+                <h5>#3 displayMessage</h5>
+                <p>this function dose what it says displays the message.</p>
 
             </div>
         </div>
